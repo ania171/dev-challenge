@@ -28,8 +28,8 @@ function UsersList({ users, sortOption, countryFilter, industryFilter }) {
 
   return (
     <>
-      {filteredAndSortedUsers.length > 0 ? (
-        <ul className="m-0 list-none p-0">
+      {filteredAndSortedUsers?.length > 0 ? (
+        <ul className="list-none">
           {filteredAndSortedUsers.map((user) => (
             <li key={user.id} className="mb-4 border border-gray-200 bg-white p-4">
               <User user={user} />
@@ -38,7 +38,7 @@ function UsersList({ users, sortOption, countryFilter, industryFilter }) {
         </ul>
       ) : (
         <div className="bg-gray-100 px-4 py-15 text-center text-gray-500">
-          <h3 className="m-0 mb-2 text-xl font-bold text-gray-700">No results found</h3>
+          <h3 className="mb-2 text-xl font-bold text-gray-700">No results found</h3>
         </div>
       )}
     </>

@@ -40,8 +40,26 @@ function App() {
     return () => controller.abort();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (loading) {
+    return (
+      <div className="container mx-auto my-4 px-4 text-base lg:text-sm">
+        <div className="flex items-center justify-center bg-gray-100 px-4 py-15 text-center text-gray-400">
+          <span className="text-surface inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-e-transparent"></span>
+          <h3 className="ml-4 inline-block text-xl font-bold text-gray-700">Loading...</h3>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container mx-auto my-4 px-4 text-base lg:text-sm">
+        <div className="bg-gray-100 px-4 py-15 text-center text-gray-500">
+          <h3 className="mb-2 text-xl font-bold text-red-700">Error: {error.message}</h3>
+        </div>
+      </div>
+    );
+  }
 
   const uniqueCountries = ['All', ...new Set(users.map((user) => user.country))];
   const uniqueIndustries = [
