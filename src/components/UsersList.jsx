@@ -1,52 +1,47 @@
-import { useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import User from './User.jsx';
-import { cn } from '../utils/cn';
 
-function UsersList() {
-	const [users, setUsers] = useState([]);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
+function parseSortOption(option) {
+	const [field, direction] = option.split('_');
+	return { field, direction };
+}
 
-	useEffect(() => {
-		const controller = new AbortController();
+function UsersList({ users, sortOption, countryFilter, industryFilter }) {
+	const filteredAndSortedUsers = useMemo(() => {
+		let result = users.filter((user) => {
+			const matchesCountry = countryFilter === 'All' || user.country === countryFilter;
+			const matchesIndustry = industryFilter === 'All' || user.industry === industryFilter;
+			return matchesCountry && matchesIndustry;
+		});
 
-		async function fetchUsers() {
-			try {
-				const response = await fetch('https://dujour.squiz.cloud/developer-challenge/data', {
-					signal: controller.signal,
-					headers: { Accept: 'application/json' },
-				});
+		const { field, direction } = parseSortOption(sortOption);
+		return result.sort((a, b) => {
+			const aValue = a[field];
+			const bValue = b[field];
 
-				if (!response.ok) {
-					throw new Error(`HTTP ${response.status}`);
-				}
+			const comparison =
+				typeof aValue === 'string' ? (aValue > bValue ? 1 : aValue < bValue ? -1 : 0) : aValue - bValue;
 
-				const data = await response.json();
-				setUsers(data);
-			} catch (err) {
-				if (err.name !== 'AbortError') {
-					setError(err);
-				}
-			} finally {
-				setLoading(false);
-			}
-		}
-
-		fetchUsers();
-		return () => controller.abort();
-	}, []);
-
-	if (loading) return <p>Ładowanie...</p>;
-	if (error) return <p>Błąd: {error.message}</p>;
+			return direction === 'ascending' ? comparison : -comparison;
+		});
+	}, [users, sortOption, countryFilter, industryFilter]);
 
 	return (
-		<ul>
-			{users.map((user, index) => (
-				<li className={cn('py-4', index !== users.length - 1 && 'border-b-1')}>
-					<User user={user} />
-				</li>
-			))}
-		</ul>
+		<>
+			{filteredAndSortedUsers.length > 0 ? (
+				<ul className="m-0 list-none p-0">
+					{filteredAndSortedUsers.map((user) => (
+						<li key={user.id} className="mb-4 border border-gray-200 bg-white p-4">
+							<User user={user} />
+						</li>
+					))}
+				</ul>
+			) : (
+				<div className="bg-gray-100 px-4 py-15 text-center text-gray-500">
+					<h3 className="m-0 mb-2 font-bold text-gray-700">No results found</h3>
+				</div>
+			)}
+		</>
 	);
 }
 
