@@ -22,13 +22,6 @@ function SortingFilters({
       <h3 className="mb-4 text-lg font-bold text-gray-800">Filters & Sorting</h3>
 
       <CustomSelect
-        label="Sort by:"
-        value={sortOption}
-        onChange={(e) => setSortOption(e.target.value)}
-        options={sortingOptions}
-      />
-
-      <CustomSelect
         label="Country:"
         value={countryFilter}
         onChange={(e) => setCountryFilter(e.target.value)}
@@ -40,6 +33,13 @@ function SortingFilters({
         value={industryFilter}
         onChange={(e) => setIndustryFilter(e.target.value)}
         options={uniqueIndustries}
+      />
+
+      <CustomSelect
+        label="Sort by:"
+        value={sortOption}
+        onChange={(e) => setSortOption(e.target.value)}
+        options={sortingOptions}
       />
 
       <button

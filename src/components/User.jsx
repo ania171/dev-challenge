@@ -1,4 +1,6 @@
 function User({ user }) {
+  if (!user) return null;
+
   return (
     <dl className="grid grid-cols-2 gap-x-4 gap-y-2 md:grid-cols-3 xl:grid-cols-4">
       <dt className="font-semibold text-gray-700">Name:</dt>
