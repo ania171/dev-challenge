@@ -38,7 +38,7 @@ function UsersList({ users, sortOption, countryFilter, industryFilter }) {
 				</ul>
 			) : (
 				<div className="bg-gray-100 px-4 py-15 text-center text-gray-500">
-					<h3 className="m-0 mb-2 font-bold text-gray-700">No results found</h3>
+					<h3 className="m-0 mb-2 text-xl font-bold text-gray-700">No results found</h3>
 				</div>
 			)}
 		</>

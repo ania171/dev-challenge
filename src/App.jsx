@@ -50,7 +50,7 @@ function App() {
 	];
 
 	return (
-		<div className="container mx-auto my-4">
+		<div className="container mx-auto my-4 px-4 text-base lg:text-sm">
 			<div className="mb-5 flex items-center justify-between border-b-1 border-gray-200 pb-3">
 				<h1 className="text-2xl font-bold text-gray-800">Users list</h1>
 			</div>

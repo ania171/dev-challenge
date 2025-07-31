@@ -1,4 +1,4 @@
-import Select from './Select.jsx';
+import CustomSelect from './CustomSelect.jsx';
 
 function SortingFilters({
 	sortOption,
@@ -21,21 +21,21 @@ function SortingFilters({
 		<>
 			<h3 className="mb-4 text-lg font-bold text-gray-800">Filters & Sorting</h3>
 
-			<Select
+			<CustomSelect
 				label="Sort by:"
 				value={sortOption}
 				onChange={(e) => setSortOption(e.target.value)}
 				options={sortingOptions}
 			/>
 
-			<Select
+			<CustomSelect
 				label="Country:"
 				value={countryFilter}
 				onChange={(e) => setCountryFilter(e.target.value)}
 				options={uniqueCountries}
 			/>
 
-			<Select
+			<CustomSelect
 				label="Industry:"
 				value={industryFilter}
 				onChange={(e) => setIndustryFilter(e.target.value)}
@@ -48,7 +48,7 @@ function SortingFilters({
 					setCountryFilter('All');
 					setIndustryFilter('All');
 				}}
-				className="mt-4 w-full cursor-pointer rounded-md bg-gray-600 p-2 text-sm text-white hover:bg-gray-700"
+				className="mt-4 w-full cursor-pointer bg-gray-600 p-2 text-sm text-white hover:bg-gray-700"
 			>
 				Reset Filters
 			</button>
