@@ -1,7 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 function CustomSelect({ label, value, onChange, options }) {
-  const selectId = label.toLowerCase().replace(/[^a-z0-9]/g, '-');
+  const selectId = label.toLowerCase().replace(/[^a-z0-9]/g, '');
 
   return (
     <div className="mb-5">

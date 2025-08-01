@@ -11,10 +11,10 @@ function SortingFilters({
   uniqueIndustries,
 }) {
   const sortingOptions = [
-    { value: 'name_ascending', label: 'Name Ascending' },
-    { value: 'name_descending', label: 'Name Descending' },
-    { value: 'numberOfEmployees_ascending', label: 'Employees Ascending' },
-    { value: 'numberOfEmployees_descending', label: 'Employees Descending' },
+    { value: 'name_ascending', label: 'Name ascending' },
+    { value: 'name_descending', label: 'Name descending' },
+    { value: 'numberOfEmployees_ascending', label: 'Number of employees ascending' },
+    { value: 'numberOfEmployees_descending', label: 'Number of employees descending' },
   ];
 
   return (
@@ -22,21 +22,21 @@ function SortingFilters({
       <h3 className="mb-4 text-lg font-bold text-gray-800">Filters & Sorting</h3>
 
       <CustomSelect
-        label="Country:"
+        label="Country"
         value={countryFilter}
         onChange={(e) => setCountryFilter(e.target.value)}
         options={uniqueCountries}
       />
 
       <CustomSelect
-        label="Industry:"
+        label="Industry"
         value={industryFilter}
         onChange={(e) => setIndustryFilter(e.target.value)}
         options={uniqueIndustries}
       />
 
       <CustomSelect
-        label="Sort by:"
+        label="Sort by"
         value={sortOption}
         onChange={(e) => setSortOption(e.target.value)}
         options={sortingOptions}
@@ -50,7 +50,7 @@ function SortingFilters({
         }}
         className="mt-4 w-full cursor-pointer bg-gray-600 p-2 text-sm text-white hover:bg-gray-700"
       >
-        Reset Filters
+        Reset filters
       </button>
     </>
   );
